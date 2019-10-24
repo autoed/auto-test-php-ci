@@ -1,0 +1,20 @@
+[
+    {
+        "name": "SKU",
+        "description": "品项过滤器",
+        "class": "SKU"
+    },
+
+    {
+        "name": "Condiment",
+        "description": "口味过滤器",
+        "class": "Condiment"
+    },
+
+   {
+        "name": "SKU",
+        "description": "口味过滤器",
+        "class": "SKU2"
+    }
+ 
+]

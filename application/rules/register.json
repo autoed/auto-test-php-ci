@@ -1,0 +1,17 @@
+[
+    {
+        "name": "SkuRule",
+        "description": "品项过滤器",
+        "class": "SkuRule"
+    },
+    {
+        "name": "CondimentRule",
+        "description": "口味过滤器",
+        "class": "CondimentRule"
+    },
+    {
+        "name": "GroupRule",
+        "description": "群组过滤器",
+        "class": "GroupRule"
+    }    
+]
