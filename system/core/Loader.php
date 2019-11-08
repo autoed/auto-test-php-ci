@@ -993,7 +993,17 @@ class CI_Loader {
 		}
 		else
 		{
-			$_ci_CI->output->append_output(ob_get_contents());
+			//执行测试模式
+			$strDoc = '';
+			if (AUTO_TEST_START) {
+				try{
+					$strDoc = Auto\Auto::getStrDoc($this->uri);
+				} catch (\Exception $e) {
+					//记录执行错误Log
+					echo $e->getMessage();die;
+				}
+			}
+			$_ci_CI->output->append_output(ob_get_contents() . $strDoc);
 			@ob_end_clean();
 		}
 

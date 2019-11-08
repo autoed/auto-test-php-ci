@@ -9,11 +9,11 @@
 
 ## Install
 * composer require auto/ci
-
+##### / / /请多操作一次^确保更新成功^ / / /
 * composer update
 
 
-## Added to CI
+## ADD  Auto Test  to CI 
 * 在 `system\core\CodeIgniter.php`文件
 * 这行代码上面：call_user_func_array(array(&$CI, $method), $params); 放入以下代码
 ```$php
@@ -37,7 +37,6 @@
  * 开启注释测试模式
  */
 define('AUTO_TEST_START', true);
-
 /**
  * 开启自动加载
  */
@@ -120,9 +119,99 @@ Welcome to CodeIgniter!
 @GET $_POST['email'] = 'fomo3d.wiki@gmail.com'
 ```
 
+## 文档生成 ADD   Auto  ApiDoc to CI 
+* 在 `system\core\Loader.php`文件
+* 这行代码基础上：$_ci_CI->output->append_output(ob_get_contents()); 放入以下代码
+```$php
+        //执行测试模式
+     	$strDoc = '';
+     	if (AUTO_TEST_START) {
+     		try{
+     			$strDoc = Auto\Auto::::getStrDoc($this->uri);
+     			} catch (\Exception $e) {
+     				//记录执行错误Log
+     				echo $e->getMessage();die;
+     			}
+     		}
+     	$_ci_CI->output->append_output(ob_get_contents() . $strDoc);
+```
+访问：http://xxxxxx/index.php
+##### 输出类似下面内容，恭喜你成功啦！
+```
+Welcome to CodeIgniter!
+18432138 Vickie Hand Jr.
+
+
+/**
+
+* Index
+
+* @param array $params \/\/传入参数（自动从下面获取）
+
+* @AD array('say'=>$data::bankAccountNumber(),'name'=>$data::name())
+
+* @Author: LiDi at 2019\/11\/8 11:31
+
+* @Email : lidi.bj@acewill.cn
+
+*/
+发送请求: welcome/index
+
+
+/**
+
+* GET Demo
+
+* @GET $_GET['say']=$data::bankAccountNumber();$_GET['name']=$data::name();
+
+* @var $say string 选择 : hello
+
+* @var $name string 选择 : world
+
+* @Author: LiDi at 2019\/10\/22 13:22
+
+* @Email : lidi.bj@acewill.cn
+
+*/
+发送请求: welcome/get_demo
+
+
+/**
+
+* POST Demo
+
+* @GET $_POST['say']=$data::bankAccountNumber();$_POST['name']=$data::name();
+
+* @var $say string 选择 : hello
+
+* @var $name string 选择 : world
+
+* @Author: LiDi at 2019\/10\/22 13:22
+
+* @Email : lidi.bj@acewill.cn
+
+*/
+发送请求: welcome/post_demo
+
+
+/**
+
+* AD Demo
+
+* @AD array('say'=>$data::bankAccountNumber(),'name'=>$data::name())
+
+* @var
+
+* @Author: LiDi at 2019\/10\/22 13:22
+
+* @Email : lidi.bj@acewill.cn
+
+*/
+发送请求: welcome/ad_demo
+```
 *
 *
-* 待续...ing
+* 待续2...ing
 
 
 
