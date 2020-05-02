@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div id="body">
 		<p>
 			<?php
-			foreach ($title as$item) {
+			foreach ($title as $item) {
 				echo $item . PHP_EOL;
 			}
 			?>
