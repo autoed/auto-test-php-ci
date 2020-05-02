@@ -46,7 +46,7 @@ class User extends CI_Controller {
 
 	/**
 	 * POST Demo
-	 * @GET $_POST['say']=$data::bankAccountNumber();$_POST['name']=$data::name();
+	 * @POST $_POST['say']=$data::bankAccountNumber();$_POST['name']=$data::name();
 	 * @var $say  string 选择 : hello
 	 * @var $name string 选择 : world
 	 */
