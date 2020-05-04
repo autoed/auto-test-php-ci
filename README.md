@@ -38,85 +38,95 @@
  */
 define('AUTO_TEST_START', true);
 /**
- * 开启自动加载
+ * 配置你的API地址(建议:分开部署)
  */
-require_once __DIR__.'/vendor/autoload.php';
+define('AUTO_TEST_API_HOST','http://www.lidi.ci.com');
+if (AUTO_TEST_START) {
+    require_once __DIR__.'/vendor/autoload.php';
+}
 ```
 
 ## Start Auto Test Demo ^_~:
 ### 举个栗子：
-* 1、编辑`application\controllers\Welcome.php`
+* 1、编辑`application\controllers\User.php`
 ```
-      /**
-	 * hello Demo
-	 * @AD array('say'=>$data::bankAccountNumber(),'name'=>$data::name())
-	 * @Author: LiDi at 2019/10/22 13:22
-	 * @Email : lidi.bj@acewill.cn
-	 */
-	public function index($params)
-	{
-		$say  = $params['say'];
-
-		$name = $params['name'];
-
-		$data['title'] =  array($say,$name);
-
-		$this->load->view('welcome_message', $data);
-		//调用提示案例：
-		if (false) {
-			$data = Auto\Auto::data();
-                        //$data的方法我会渐进式开发、完善
-                        //Email: lidi.bj@acewill.cn
-                        //OtherEmail: fomo3d.wiki@gmail.com
-			echo $data::name();
-			echo $data::bankAccountNumber();
-		}
-	}
+    /**
+    	 * api
+         * @notice You should know , this api is useful !
+    	 */
+    	public function api()
+    	{
+            //调用案例：
+            if (false) {
+                $data = Auto\Auto::data();
+                echo $data::name();
+                echo $data::bankAccountNumber();
+            }
+    		$this->load->view('api', array('notice'=>'You should know , this api is useful !'));
+    	}
+    
+        /**
+         * TEST Demo
+         * @AD array('name'=>'Luck','address'=>'Beijing')
+         * User:  fomo3d.wiki
+         * Email: fomo3d.wiki@gmail.com
+         * Date: 2020/5/4
+         */
+        public function test_ok()
+        {
+            $data =  $_POST;
+            Respond::ok($data);
+        }
 ```
-* 2、编辑`application\views\welcome_message.php`
+* 2、编辑`application\views\api.php`
 ```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Welcome to CodeIgniter</title>
+</head>
 <body>
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
-	<div id="body">
-		<p>
-			<?php
-			foreach ($title as$item) {
-				echo $item . PHP_EOL;
-			}
-			?>
-		</p>
-	</div>
+<div class="container">
+    <h1>Welcome to auto api !</h1>
+    <div id="body">
+        <p>
+            <?php
+            echo $notice;
+            ?>
+        </p>
+    </div>
 </div>
 </body>
+</html>
 ```
-* 3、访问：http://xxxxxx/index.php
+* 3、访问：http://www.lidi.ci.com/user/api
 ##### 输出类似下面内容，恭喜你成功啦！
 ```
-Welcome to CodeIgniter!
+Welcome to auto api !
 
-26237202866165 Vicente Ankunding
+You should know , this api is useful !
+
 ```
 ## Notice Help:
 
 ### 目前支持3种格式
-* 1、普通参数传递：@AD 
-##### ①、万能参数：（详细：请参考上面的栗子）
+* 1、普通参数传递：@AD (发送请求为POST)
 ```
 @AD array('say'=>$data::bankAccountNumber(),'name'=>$data::name())
 ```
-##### ②、固定参数：
+or
 ```
 @AD array('say'=>'我爱你,','name'=>'伟大的祖国！')
 ```
-* 2、GET参数传递：@GET 
+* 2、GET参数传递：@GET (发送请求为GET)
 ```
-@GET $_GET['luck'] = 28
+@GET array('num'=>$data::bankAccountNumber(),'email'=>$data::email())
 ```
 
-* 3、POST参数传递：@POST 
+* 3、POST参数传递：@POST (发送请求为POST)
 ```
-@GET $_POST['email'] = 'fomo3d.wiki@gmail.com'
+@POST array('name'=>$data::name(),'address'=>$data::address())
 ```
 
 ## 文档生成 ADD   Auto  ApiDoc to CI 
@@ -135,83 +145,82 @@ Welcome to CodeIgniter!
      		}
      	$_ci_CI->output->append_output(ob_get_contents() . $strDoc);
 ```
-访问：http://xxxxxx/index.php
+访问：http://www.lidi.ci.com/user/api
 ##### 输出类似下面内容，恭喜你成功啦！
 ```
-Welcome to CodeIgniter!
-18432138 Vickie Hand Jr.
+Welcome to auto api !
+You should know , this api is useful !
 
 
 /**
 
-* Index
+* TEST Demo
 
-* @param array $params \/\/传入参数（自动从下面获取）
+* @AD array('name'=>'Luck','address'=>'Beijing')
 
-* @AD array('say'=>$data::bankAccountNumber(),'name'=>$data::name())
+* User: fomo3d.wiki
 
-* @Author: LiDi at 2019\/11\/8 11:31
+* Email: fomo3d.wiki@gmail.com
 
-* @Email : lidi.bj@acewill.cn
+* Date: 2020\/5\/4
 
 */
-发送请求: welcome/index
+name:
 
+
+address:
+
+
+
+发送请求: user/test_ok
 
 /**
 
 * GET Demo
 
-* @GET $_GET['say']=$data::bankAccountNumber();$_GET['name']=$data::name();
+* @GET array('num'=>$data::bankAccountNumber(),'email'=>$data::email())
 
-* @var $say string 选择 : hello
+* User: fomo3d.wiki
 
-* @var $name string 选择 : world
+* Email: fomo3d.wiki@gmail.com
 
-* @Author: LiDi at 2019\/10\/22 13:22
-
-* @Email : lidi.bj@acewill.cn
+* Date: 2020\/5\/4
 
 */
-发送请求: welcome/get_demo
+num:
 
+
+email:
+
+
+
+发送请求: user/get_ok
 
 /**
 
 * POST Demo
 
-* @GET $_POST['say']=$data::bankAccountNumber();$_POST['name']=$data::name();
+* @POST array('name'=>$data::name(),'address'=>$data::address())
 
-* @var $say string 选择 : hello
+* User: fomo3d.wiki
 
-* @var $name string 选择 : world
+* Email: fomo3d.wiki@gmail.com
 
-* @Author: LiDi at 2019\/10\/22 13:22
-
-* @Email : lidi.bj@acewill.cn
+* Date: 2020\/5\/4
 
 */
-发送请求: welcome/post_demo
+name:
 
 
-/**
+address:
 
-* AD Demo
 
-* @AD array('say'=>$data::bankAccountNumber(),'name'=>$data::name())
 
-* @var
-
-* @Author: LiDi at 2019\/10\/22 13:22
-
-* @Email : lidi.bj@acewill.cn
-
-*/
-发送请求: welcome/ad_demo
+发送请求: user/post_ok
 ```
 *
 *
-* 待续2...ing
+* 待续3...ing
 
 
 

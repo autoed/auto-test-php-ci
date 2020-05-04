@@ -24,6 +24,7 @@ class User extends CI_Controller
 {
 	/**
 	 * api
+     * @notice You should know , this api is useful !
 	 */
 	public function api()
 	{
