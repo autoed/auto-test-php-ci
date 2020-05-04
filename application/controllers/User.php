@@ -27,6 +27,12 @@ class User extends CI_Controller
 	 */
 	public function api()
 	{
+        //调用案例：
+        if (false) {
+            $data = Auto\Auto::data();
+            echo $data::name();
+            echo $data::bankAccountNumber();
+        }
 		$this->load->view('api', array('notice'=>'You should know , this api is useful !'));
 	}
 
