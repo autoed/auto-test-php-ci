@@ -9,7 +9,7 @@
 
 ## Install
 * composer require auto/ci
-##### / / /请多操作一次^确保更新成功^ / / /
+##### /\\^请多操作一次确保更新成功^/\
 * composer update
 
 
@@ -50,7 +50,7 @@ if (AUTO_TEST_START) {
 ### 举个栗子：
 * 1、编辑`application\controllers\User.php`
 ```
-    /**
+       /**
     	 * api
          * @notice You should know , this api is useful !
     	 */
