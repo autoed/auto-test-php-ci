@@ -52,6 +52,9 @@ if (AUTO_TEST_START) {
 ### 举个栗子：
 * 1、编辑`application\controllers\User.php`
 ```
+              /**
+               * 开启auto API Document
+               */
                use Auto\Api;
            
                /**

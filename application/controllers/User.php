@@ -7,6 +7,9 @@
  */
 class User extends CI_Controller
 {
+    /**
+     * 开启auto API Document
+     */
     use Auto\Api;
 
     /**
