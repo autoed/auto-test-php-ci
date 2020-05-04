@@ -52,33 +52,41 @@ if (AUTO_TEST_START) {
 ### 举个栗子：
 * 1、编辑`application\controllers\User.php`
 ```
-       /**
-    	 * api
-         * @notice You should know , this api is useful !
-    	 */
-    	public function api()
-    	{
-            //调用案例：
-            if (false) {
-                $data = Auto\Auto::data();
-                echo $data::name();
-                echo $data::bankAccountNumber();
-            }
-    		$this->load->view('api', array('notice'=>'You should know , this api is useful !'));
-    	}
-    
-        /**
-         * TEST Demo
-         * @AD array('name'=>'Luck','address'=>'Beijing')
-         * User:  fomo3d.wiki
-         * Email: fomo3d.wiki@gmail.com
-         * Date: 2020/5/4
-         */
-        public function test_ok()
-        {
-            $data =  $_POST;
-            Respond::ok($data);
-        }
+               use Auto\Api;
+           
+               /**
+                * TEST Demo
+                * @AD array('name'=>'Luck','address'=>'Beijing')
+                * User:  fomo3d.wiki
+                * Email: fomo3d.wiki@gmail.com
+                * Date: 2020/5/4
+                */
+               public function test_ok()
+               {
+                   //调用案例：
+                   if (false) {
+                       /**
+                        * @var Auto\Data $data
+                        */
+                       $data = Auto\Auto::data();
+                       
+                       /**
+                        * Ms. Demetris Dickens
+                        */
+                       $data::name();
+                       
+                       /**
+                        * 9113 Greenfelder Inlet\nMaudiehaven, NE 56622
+                        */
+                       $data::address();
+                   }
+                   
+                   //接收数据
+                   $params =  $_POST;
+                   
+                   //返回数据
+                   Respond::ok($params);
+               }
 ```
 * 2、编辑`application\views\api.php`
 ```
@@ -158,7 +166,7 @@ You should know , this api is useful !
 
 * TEST Demo
 
-* @AD array('name'=>'Luck','address'=>'Beijing')
+* @AD array('say'=>'我爱你,','name'=>'伟大的祖国！')
 
 * User: fomo3d.wiki
 
@@ -167,10 +175,10 @@ You should know , this api is useful !
 * Date: 2020\/5\/4
 
 */
+say:
+
+
 name:
-
-
-address:
 
 
 

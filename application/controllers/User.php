@@ -1,19 +1,4 @@
 <?php
-
-/**
- * class Respond
- * User:  fomo3d.wiki
- * Email: fomo3d.wiki@gmail.com
- * Date: 2020/5/3
- */
-class Respond
-{
-    public static function ok($data, $msg='')
-    {
-        header('Content-type: application/json');
-        echo json_encode(array('code'=> 200, 'msg' => $msg, 'obj' => $data), JSON_UNESCAPED_UNICODE);
-    }
-}
 /**
  * Class User
  * User:  fomo3d.wiki
@@ -22,32 +7,40 @@ class Respond
  */
 class User extends CI_Controller
 {
-	/**
-	 * api
-     * @notice You should know , this api is useful !
-	 */
-	public function api()
-	{
-        //调用案例：
-        if (false) {
-            $data = Auto\Auto::data();
-            echo $data::name();
-            echo $data::bankAccountNumber();
-        }
-		$this->load->view('api', array('notice'=>'You should know , this api is useful !'));
-	}
+    use Auto\Api;
 
     /**
      * TEST Demo
-     * @AD array('name'=>'Luck','address'=>'Beijing')
+     * @AD array('say'=>'我爱你,','name'=>'伟大的祖国！')
      * User:  fomo3d.wiki
      * Email: fomo3d.wiki@gmail.com
      * Date: 2020/5/4
      */
     public function test_ok()
     {
-        $data =  $_POST;
-        Respond::ok($data);
+        //调用案例：
+        if (false) {
+            /**
+             * @var Auto\Data $data
+             */
+            $data = Auto\Auto::data();
+
+            /**
+             * Ms. Demetris Dickens
+             */
+            $data::name();
+
+            /**
+             * 9113 Greenfelder Inlet\nMaudiehaven, NE 56622
+             */
+            $data::address();
+        }
+
+        //接收数据
+        $params =  $_POST;
+
+        //返回数据
+        Respond::ok($params);
     }
 
     /**
@@ -59,8 +52,11 @@ class User extends CI_Controller
      */
 	public function get_ok()
 	{
-        $data= $_GET;
-        Respond::ok($data);
+        //接收数据
+        $params =  $_GET;
+
+        //返回数据
+        Respond::ok($params);
 	}
 
     /**
@@ -72,7 +68,26 @@ class User extends CI_Controller
      */
 	public function post_ok()
 	{
-		$data =  $_POST;
-        Respond::ok($data);
+        //接收数据
+        $params =  $_POST;
+
+        //返回数据
+        Respond::ok($params);
 	}
+}
+
+/**
+ * class Respond
+ * User:  fomo3d.wiki
+ * Email: fomo3d.wiki@gmail.com
+ * Date: 2020/5/3
+ */
+class Respond
+{
+    public static function ok($params, $msg='')
+    {
+        header('Content-type: application/json');
+
+        echo json_encode(array('code'=> 200, 'msg' => $msg, 'obj' => $params), JSON_UNESCAPED_UNICODE);
+    }
 }
