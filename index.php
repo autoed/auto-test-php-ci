@@ -3,10 +3,10 @@
  * 开启注释测试模式
  */
 define('AUTO_TEST_START', true);
-/**
- * 开启自动加载
- */
-require_once __DIR__.'/vendor/autoload.php';
+define('AUTO_TEST_API_HOST','http://www.lidi.ci.com');
+if (AUTO_TEST_START) {
+    require_once __DIR__.'/vendor/autoload.php';
+}
 
 /**
  * CodeIgniter
