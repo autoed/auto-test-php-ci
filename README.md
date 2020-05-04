@@ -180,6 +180,10 @@ or
 Welcome to auto api !
 You should know , this api is useful !
 
+http://www.lidi.ci.com/user/api
+
+http://www.lidi.ci.com/meeting/api
+
 
 /**
 
